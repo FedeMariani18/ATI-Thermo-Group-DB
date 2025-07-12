@@ -8,40 +8,69 @@ import java.util.Objects;
 
 public final class Articolo {
 
-    public final int code;
-    public final String description;
+    public final int id_prodotto;
+    public final int id_seriale;
+    public final Integer id_magazzino;
+    public final Integer numero_scansia;
+    public final Integer colonna;
+    public final Integer piano;
+    public final Integer id_bolla_vendita;
+    public final Integer id_bolla_acquisto;
 
-    public Material(int code, String description) {
-        this.code = code;
-        this.description = description == null ? "" : description;
+    public ProdottoMagazzino(
+        int id_prodotto,
+        int id_seriale,
+        Integer id_magazzino,
+        Integer numero_scansia,
+        Integer colonna,
+        Integer piano,
+        Integer id_bolla_vendita,
+        Integer id_bolla_acquisto
+    ) {
+        this.id_prodotto = id_prodotto;
+        this.id_seriale = id_seriale;
+        this.id_magazzino = id_magazzino;
+        this.numero_scansia = numero_scansia;
+        this.colonna = colonna;
+        this.piano = piano;
+        this.id_bolla_vendita = id_bolla_vendita;
+        this.id_bolla_acquisto = id_bolla_acquisto;
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        } else if (other == null) {
-            return false;
-        } else if (other instanceof Material) {
-            var m = (Material) other;
-            return (m.code == this.code && m.description.equals(this.description));
-        } else {
-            return false;
-        }
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        ProdottoMagazzino that = (ProdottoMagazzino) other;
+        return id_prodotto == that.id_prodotto &&
+               id_seriale == that.id_seriale &&
+               Objects.equals(id_magazzino, that.id_magazzino) &&
+               Objects.equals(numero_scansia, that.numero_scansia) &&
+               Objects.equals(colonna, that.colonna) &&
+               Objects.equals(piano, that.piano) &&
+               Objects.equals(id_bolla_vendita, that.id_bolla_vendita) &&
+               Objects.equals(id_bolla_acquisto, that.id_bolla_acquisto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.code, this.description);
+        return Objects.hash(id_prodotto, id_seriale, id_magazzino, numero_scansia, colonna, piano, id_bolla_vendita, id_bolla_acquisto);
     }
 
     @Override
     public String toString() {
-        return Printer.stringify(
-            "Material",
-            List.of(Printer.field("code", this.code), Printer.field("description", this.description))
-        );
+        return "ProdottoMagazzino{" +
+                "id_prodotto=" + id_prodotto +
+                ", id_seriale=" + id_seriale +
+                ", id_magazzino=" + id_magazzino +
+                ", numero_scansia=" + numero_scansia +
+                ", colonna=" + colonna +
+                ", piano=" + piano +
+                ", id_bolla_vendita=" + id_bolla_vendita +
+                ", id_bolla_acquisto=" + id_bolla_acquisto +
+                '}';
     }
+
 
     public static final class DAO {
 

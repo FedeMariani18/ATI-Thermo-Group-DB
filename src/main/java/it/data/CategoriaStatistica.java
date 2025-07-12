@@ -1,0 +1,35 @@
+package it.data;
+
+import java.util.Objects;
+
+public class CategoriaStatistica {
+    public int id_categoria_statistica;
+    public String descrizione;
+
+    public CategoriaStatistica(int id_categoria_statistica, String descrizione) {
+        this.id_categoria_statistica = id_categoria_statistica;
+        this.descrizione = descrizione;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoriaStatistica{" +
+                "id_categoria_statistica=" + id_categoria_statistica +
+                ", descrizione='" + descrizione + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoriaStatistica that = (CategoriaStatistica) o;
+        return id_categoria_statistica == that.id_categoria_statistica &&
+                Objects.equals(descrizione, that.descrizione);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_categoria_statistica, descrizione);
+    }
+}
