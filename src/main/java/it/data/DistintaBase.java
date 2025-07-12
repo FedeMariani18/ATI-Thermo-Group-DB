@@ -1,5 +1,6 @@
 package it.data;
 
+import java.util.List;
 import java.util.Objects;
 
 public class DistintaBase {
@@ -15,11 +16,13 @@ public class DistintaBase {
 
     @Override
     public String toString() {
-        return "DistintaBase{" +
-                "D_P_id_prodotto=" + id_prodotto1 +
-                ", id_prodotto=" + id_prodotto +
-                ", quantita=" + quantita +
-                '}';
+        return Printer.stringify("DistintaBase",
+            List.of(
+                Printer.field("id", id_prodotto1),
+                Printer.field("id_prodotto", id_prodotto),
+                Printer.field("quantita", quantita)
+            )
+        );
     }
 
     @Override

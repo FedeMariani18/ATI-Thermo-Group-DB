@@ -1,5 +1,6 @@
 package it.data;
 
+import java.util.List;
 import java.util.Objects;
 
 public class DistintaBasePassaggi {
@@ -15,11 +16,13 @@ public class DistintaBasePassaggi {
 
     @Override
     public String toString() {
-        return "DistintaBasePassaggi{" +
-                "nome_passaggio='" + nome_passaggio + '\'' +
-                ", id_prodotto=" + id_prodotto +
-                ", stima_durata=" + stima_durata +
-                '}';
+        return Printer.stringify("DistintaBasePassaggi",
+            List.of(
+                Printer.field("nome_passaggio", nome_passaggio),
+                Printer.field("id_prodotto", id_prodotto),
+                Printer.field("stima_durata", stima_durata)
+            )
+        );
     }
 
     @Override

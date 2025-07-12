@@ -11,9 +11,11 @@ public class Citta {
 
     @Override
     public String toString() {
-        return "Citta{" +
-                "nome_citta='" + nome_citta + '\'' +
-                '}';
+        return Printer.stringify("Citta",
+            List.of(
+                Printer.field("nome_citta", nome_citta)
+            )
+        );
     }
 
     @Override

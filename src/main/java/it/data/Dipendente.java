@@ -1,5 +1,6 @@
 package it.data;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Dipendente {
@@ -19,13 +20,15 @@ public class Dipendente {
 
     @Override
     public String toString() {
-        return "Dipendente{" +
-                "codice_fiscale='" + codice_fiscale + '\'' +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", anno_di_nascita=" + anno_di_nascita +
-                ", nome_ruolo='" + nome_ruolo + '\'' +
-                '}';
+        return Printer.stringify("Dipendente",
+            List.of(
+                Printer.field("codice_fiscale", codice_fiscale),
+                Printer.field("nome", nome),
+                Printer.field("cognome", cognome),
+                Printer.field("anno_di_nascita", anno_di_nascita),
+                Printer.field("nome_ruolo", nome_ruolo)
+            )
+        );
     }
 
     @Override

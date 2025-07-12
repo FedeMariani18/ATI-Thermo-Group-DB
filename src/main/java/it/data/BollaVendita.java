@@ -1,6 +1,7 @@
 package it.data;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class BollaVendita {
@@ -18,12 +19,13 @@ public class BollaVendita {
 
     @Override
     public String toString() {
-        return "BollaVendita{" +
-                "id_bolla_vendita=" + id_bolla_vendita +
-                ", id_ordine=" + id_ordine +
-                ", data=" + data +
-                ", p_iva='" + p_iva + '\'' +
-                '}';
+        return Printer.stringify("BollaVendita",
+            List.of(
+                Printer.field("id", id_bolla_vendita),
+                Printer.field("data", data),
+                Printer.field("cliente", p_iva)
+            )
+        );
     }
 
     @Override

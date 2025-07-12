@@ -1,5 +1,6 @@
 package it.data;
 
+import java.util.List;
 import java.util.Objects;
 
 public class CategoriaStatistica {
@@ -13,10 +14,12 @@ public class CategoriaStatistica {
 
     @Override
     public String toString() {
-        return "CategoriaStatistica{" +
-                "id_categoria_statistica=" + id_categoria_statistica +
-                ", descrizione='" + descrizione + '\'' +
-                '}';
+        return Printer.stringify("CategoriaStatistica",
+            List.of(
+                Printer.field("id_categoria_statistica", id_categoria_statistica),
+                Printer.field("descrizione", descrizione)
+            )
+        );
     }
 
     @Override

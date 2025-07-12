@@ -59,16 +59,18 @@ public final class Articolo {
 
     @Override
     public String toString() {
-        return "ProdottoMagazzino{" +
-                "id_prodotto=" + id_prodotto +
-                ", id_seriale=" + id_seriale +
-                ", id_magazzino=" + id_magazzino +
-                ", numero_scansia=" + numero_scansia +
-                ", colonna=" + colonna +
-                ", piano=" + piano +
-                ", id_bolla_vendita=" + id_bolla_vendita +
-                ", id_bolla_acquisto=" + id_bolla_acquisto +
-                '}';
+        return Printer.stringify("Articolo",
+            List.of(
+                Printer.field("id", id_prodotto),
+                Printer.field("seriale", id_seriale),
+                Printer.field("magazzino", id_magazzino),
+                Printer.field("scansia", numero_scansia),
+                Printer.field("colonna", colonna),
+                Printer.field("piano", piano),
+                Printer.field("bolla_vendita", id_bolla_vendita),
+                Printer.field("bolla_acquisto", id_bolla_acquisto)
+            )
+        );
     }
 
 
