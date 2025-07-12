@@ -1,8 +1,11 @@
 package it.unibo.data;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Prodotto {
     public int id_prodotto;
@@ -88,4 +91,58 @@ public class Prodotto {
             id_categoria_statistica, id_categoria, id_gruppo
         );
     }
+
+    public static final class DAO {
+        public static Optional<Prodotto> find(Connection connection, String id_prodotto) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.FIND_PRODOTTO, id_prodotto); 
+                var rs   = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Prodotto p = new Prodotto(
+                        rs.getInt("id_prodotto"),
+                        rs.getBigDecimal("prezzo_listino"),
+                        rs.getString("descrizione"),
+                        rs.getBigDecimal("peso"),
+                        rs.getBigDecimal("superficie"),
+                        rs.getBigDecimal("prezzo_inventario"),
+                        rs.getString("codice_a_barre"),
+                        rs.getString("nome_stato"),
+                        rs.getInt("id_categoria_statistica"),
+                        rs.getInt("id_categoria"),
+                        rs.getInt("id_gruppo")
+                    );
+                    return Optional.of(p);
+                }
+                return Optional.empty();
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti", e);
+            }
+        }
+
+        public static List<Prodotto> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_PRODOTTI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Prodotto>();
+                while(rs.next()) {
+                    Prodotto p = new Prodotto(
+                        rs.getInt("id_prodotto"),
+                        rs.getBigDecimal("prezzo_listino"),
+                        rs.getString("descrizione"),
+                        rs.getBigDecimal("peso"),
+                        rs.getBigDecimal("superficie"),
+                        rs.getBigDecimal("prezzo_inventario"),
+                        rs.getString("codice_a_barre"),
+                        rs.getString("nome_stato"),
+                        rs.getInt("id_categoria_statistica"),
+                        rs.getInt("id_categoria"),
+                        rs.getInt("id_gruppo")
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti", e);
+            }
+            
+        } 
+    } 
 }
