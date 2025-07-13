@@ -60,4 +60,23 @@ public final class Queries {
         FROM bolle_vendita
         """;
 
+    public static final String LOAD_DISTINTA = """
+        SELECT *
+        FROM distinte_base
+        """;
+
+    public static final String LOAD_DISTINTA_PASSAGGI = """
+        SELECT *
+        FROM distinte_base_passaggi
+        """;
+
+    public static final String LOAD_DIPENDENTI = """
+        SELECT *
+        FROM dipendenti
+        """;
+
+    public static final String LOAD_MAGAZZINI = """
+        SELECT *
+        FROM magazzini
+        """;
 }

@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,5 +48,28 @@ public class Magazzino {
     @Override
     public int hashCode() {
         return Objects.hash(id_magazzino, nome, via, civico, nome_citta);
+    }
+
+    public static final class DAO {
+        public static List<Magazzino> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_MAGAZZINI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Magazzino>();
+                while(rs.next()) {
+                    Magazzino p = new Magazzino(
+                        rs.getInt("id_magazzino"),
+                        rs.getString("nome"),
+                        rs.getString("via"),
+                        rs.getString("civico"),
+                        rs.getString("nome_città")
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        }
     }
 }

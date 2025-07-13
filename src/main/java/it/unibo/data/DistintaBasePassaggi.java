@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,5 +40,25 @@ public class DistintaBasePassaggi {
     @Override
     public int hashCode() {
         return Objects.hash(nome_passaggio, id_prodotto, stima_durata);
+    }
+    public static final class DAO {
+        public static List<DistintaBasePassaggi> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_DISTINTA_PASSAGGI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<DistintaBasePassaggi>();
+                while(rs.next()) {
+                    DistintaBasePassaggi p = new DistintaBasePassaggi(
+                        rs.getString("nome_passaggio"),
+                        rs.getInt("id_prodotto"),
+                        rs.getInt("stima_durata")
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        }
     }
 }

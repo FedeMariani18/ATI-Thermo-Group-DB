@@ -36,7 +36,7 @@ public class SchedeDiLavorazionePanel extends JPanel{
 
     private JPanel tablePanel() {
         JPanel tPanel = new JPanel();
-        tPanel.setLayout(new java.awt.GridLayout(1, 1));  // 2 righe, 1 colonna
+        tPanel.setLayout(new java.awt.GridLayout(1, 1));
 
         model = new DefaultTableModel(new String[]{"codice fiscale", "id prodotto", "id seriale", "data", "ora inizio",
         "ora fine"}, 0) {
