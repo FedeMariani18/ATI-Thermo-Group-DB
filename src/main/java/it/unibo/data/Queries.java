@@ -34,4 +34,16 @@ public final class Queries {
         FROM schede_di_lavorazione
         """;
 
+    public static final String LOAD_DISTINTA = """
+        SELECT *
+        FROM distinte_base
+        """;
+
+    public static final String LOAD_DISTINTA_PASSAGGI = """
+        SELECT *
+        FROM distinte_base_passaggi
+        """;
+
+    
+
 }

@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import it.unibo.controller.Controller;
 import it.unibo.data.Articolo;
+import it.unibo.data.DistintaBase;
+import it.unibo.data.DistintaBasePassaggi;
 import it.unibo.data.Prodotto;
 import it.unibo.data.SchedaDiLavorazione;
 
@@ -41,5 +43,17 @@ public class DBModel {
 
     public List<SchedaDiLavorazione> loadSchede() {
         return SchedaDiLavorazione.DAO.findAll(connection);
+    }
+
+    //DISTINTA BASE
+
+    public List<DistintaBase> loadDistinte() {
+        return DistintaBase.DAO.findAll(connection);
+    }
+
+    //DISTINTA BASE PASSAGGI
+
+    public List<DistintaBasePassaggi> loadDistintePassaggi() {
+        return DistintaBasePassaggi.DAO.findAll(connection);
     }
 }

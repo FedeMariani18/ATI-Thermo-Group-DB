@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,5 +40,26 @@ public class DistintaBase {
     @Override
     public int hashCode() {
         return Objects.hash(id_prodotto1, id_prodotto, quantita);
+    }
+
+    public static final class DAO {
+        public static List<DistintaBase> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_DISTINTA); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<DistintaBase>();
+                while(rs.next()) {
+                    DistintaBase p = new DistintaBase(
+                        rs.getInt("id_prodotto_finale"),
+                        rs.getInt("id_prodotto"),
+                        rs.getInt("quantita")
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        }
     }
 }

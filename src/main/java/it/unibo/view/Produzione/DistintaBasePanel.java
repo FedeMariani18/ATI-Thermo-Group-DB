@@ -13,12 +13,13 @@ import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
+import it.unibo.data.DistintaBase;
 import it.unibo.data.Prodotto;
+import it.unibo.data.SchedaDiLavorazione;
 
 public class DistintaBasePanel extends JPanel {
-    private static final long serialVersionUID = 1L; // Added for serialization
-    private final DefaultTableModel model;
-    private final JTable table;
+    private DefaultTableModel model;
+    private JTable table;
     private final Controller controller;
 
     public DistintaBasePanel(Controller controller) {
@@ -30,32 +31,33 @@ public class DistintaBasePanel extends JPanel {
 
         JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
         this.add(btnBack, BorderLayout.SOUTH);
+        add(tablePanel(), BorderLayout.CENTER);
+        refreshTable();
+    }
 
-        model = new DefaultTableModel(new String[]{"Codice Ordine", "Totale", "Cliente", "Stato"}, 0) {
+    private JPanel tablePanel() {
+        JPanel tPanel = new JPanel();
+        tPanel.setLayout(new java.awt.GridLayout(1, 1));
+
+        model = new DefaultTableModel(new String[]{"id prodotto finale", "id prodotto", "quantità"}, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
         table = new JTable(model);
 
-        refreshTable();
+        tPanel.add(new JScrollPane(table));
 
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        return tPanel;
     }
 
     private void refreshTable() {
-        // model.setRowCount(0);
-        // List<Prodotto> prodotti = controller.getModel().loadProdotti();
-        // for (Prodotto p : prodotti) {
-        //     model.addRow(new Object[]{
-        //         p.id_prodotto,
-        //         p.prezzo_listino,
-        //         p.descrizione,
-        //         p.peso,
-        //         p.superficie,
-        //         p.prezzo_inventario,
-        //         p.codice_a_barre,
-        //         p.nome_stato,
-        //         p.id_gruppo
-        //     });
-        // }
+        model.setRowCount(0);
+        List<DistintaBase> distinte = controller.getModel().loadDistinte();
+        for (DistintaBase p : distinte) {
+            model.addRow(new Object[]{
+                p.id_prodotto1,
+                p.id_prodotto,
+                p.quantita,
+            });
+        }
     }
 }
