@@ -75,7 +75,7 @@ public class SchedaDiLavorazione {
                         rs.getInt("id_seriale"),
                         rs.getDate("data"),
                         rs.getTime("ora_inizio"),
-                        rs.getTime("ora_fine"),
+                        rs.getTime("ora_fine")
                     );
                     list.add(p);
                 }

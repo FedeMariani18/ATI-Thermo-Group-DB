@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.Prodotto;
+import it.unibo.data.SchedaDiLavorazione;
 
 public class SchedeDiLavorazionePanel extends JPanel{
     private DefaultTableModel model;
@@ -49,22 +50,17 @@ public class SchedeDiLavorazionePanel extends JPanel{
     }
 
     private void refreshTable() {
-        // model.setRowCount(0);
-        // List<Prodotto> prodotti = controller.getModel().loadProdotti();
-        // for (Prodotto p : prodotti) {
-        //     model.addRow(new Object[]{
-        //         p.id_prodotto,
-        //         p.prezzo_listino,
-        //         p.descrizione,
-        //         p.peso,
-        //         p.superficie,
-        //         p.prezzo_inventario,
-        //         p.codice_a_barre,
-        //         p.nome_stato,
-        //         p.id_categoria_statistica,
-        //         p.id_categoria,
-        //         p.id_gruppo
-        //     });
-        // }
+        model.setRowCount(0);
+        List<SchedaDiLavorazione> schede = controller.getModel().loadSchede();
+        for (SchedaDiLavorazione p : schede) {
+            model.addRow(new Object[]{
+                p.codice_fiscale,
+                p.id_prodotto,
+                p.id_seriale,
+                p.data,
+                p.ora_inizio,
+                p.ora_fine,
+            });
+        }
     }
 }
