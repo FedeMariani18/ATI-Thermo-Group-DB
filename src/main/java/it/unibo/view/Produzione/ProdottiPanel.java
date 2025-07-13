@@ -85,8 +85,11 @@ public class ProdottiPanel extends JPanel {
 
     private void refreshTableArticoli() {
         modelArticoli.setRowCount(0);
+        if(tableProdotti.getRowCount() == 0) {
+            return; // No products to show articles for
+        }
         int row = tableProdotti.getSelectedRow()>= 0? tableProdotti.getSelectedRow() : 0;
-        int id_prodotto = (int)modelProdotti.getValueAt(row, 0) ;
+        int id_prodotto = (int)modelProdotti.getValueAt(row, 0);
         List<Articolo> articoli = controller.getModel().loadArticoliByProducts(id_prodotto);
         for (Articolo a : articoli) {
             modelArticoli.addRow(new Object[]{
