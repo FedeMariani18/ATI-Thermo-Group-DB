@@ -1,10 +1,12 @@
 package it.unibo.data;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class Articolo {
 
@@ -74,12 +76,73 @@ public final class Articolo {
     }
 
 
-    // public static final class DAO {
+    public static final class DAO {
+        public static Optional<Articolo> find(Connection connection, int id_articolo) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.FIND_ARTICOLO, id_articolo); 
+                var rs   = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Articolo a = new Articolo(
+                        rs.getInt("id_prodotto"),
+                        rs.getInt("id_seriale"),
+                        rs.getInt("id_magazzino"),
+                        rs.getInt("numero_scansia"),
+                        rs.getInt("colonna"),
+                        rs.getInt("piano"),
+                        rs.getInt("id_bolla_vendita"),
+                        rs.getInt("id_bolla_acquisto")
+                    );
+                    return Optional.of(a);
+                }
+                return Optional.empty();
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti", e);
+            }
+        }
 
-    //     public static Map<Material, Float> forProduct(Connection connection, int productId) {
-    //         // Iterating through a resultSet:
-    //         // https://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html
-    //         throw new UnsupportedOperationException("Unimplemented");
-    //     }
-    // }
+        public static List<Articolo> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_ARTICOLI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Articolo>();
+                while(rs.next()) {
+                    Articolo a = new Articolo(
+                        rs.getInt("id_prodotto"),
+                        rs.getInt("id_seriale"),
+                        rs.getInt("id_magazzino"),
+                        rs.getInt("numero_scansia"),
+                        rs.getInt("colonna"),
+                        rs.getInt("piano"),
+                        rs.getInt("id_bolla_vendita"),
+                        rs.getInt("id_bolla_acquisto")
+                    );
+                    list.add(a);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
+
+        public static List<Articolo> findByProduct(Connection connection, int id_prodotto) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.FIND_ARTICOLO_BY_PRODUCT, id_prodotto); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Articolo>();
+                while(rs.next()) {
+                    Articolo a = new Articolo(
+                        rs.getInt("id_prodotto"),
+                        rs.getInt("id_seriale"),
+                        rs.getInt("id_magazzino"),
+                        rs.getInt("numero_scansia"),
+                        rs.getInt("colonna"),
+                        rs.getInt("piano"),
+                        rs.getInt("id_bolla_vendita"),
+                        rs.getInt("id_bolla_acquisto")
+                    );
+                    list.add(a);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
+    } 
 }

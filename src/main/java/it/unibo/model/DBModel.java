@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import it.unibo.controller.Controller;
+import it.unibo.data.Articolo;
 import it.unibo.data.Prodotto;
 
 public class DBModel {
@@ -23,7 +24,11 @@ public class DBModel {
         return Prodotto.DAO.findAll(connection);
     }
 
-    public Optional<Prodotto> findProdotto(String idProdotto) {
+    public Optional<Prodotto> findProdotto(int idProdotto) {
         return Prodotto.DAO.find(connection, idProdotto);
+    }
+
+    public List<Articolo> loadArticoli() {
+        return Articolo.DAO.findAll(connection);
     }
 }

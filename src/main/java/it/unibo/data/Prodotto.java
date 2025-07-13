@@ -16,8 +16,6 @@ public class Prodotto {
     public BigDecimal prezzo_inventario;
     public String codice_a_barre;
     public String nome_stato;
-    public Integer id_categoria_statistica;
-    public Integer id_categoria;
     public Integer id_gruppo;
 
     public Prodotto(
@@ -29,8 +27,6 @@ public class Prodotto {
         BigDecimal prezzo_inventario,
         String codice_a_barre,
         String nome_stato,
-        Integer id_categoria_statistica,
-        Integer id_categoria,
         Integer id_gruppo
     ) {
         this.id_prodotto = id_prodotto;
@@ -41,8 +37,6 @@ public class Prodotto {
         this.prezzo_inventario = prezzo_inventario;
         this.codice_a_barre = codice_a_barre;
         this.nome_stato = nome_stato;
-        this.id_categoria_statistica = id_categoria_statistica;
-        this.id_categoria = id_categoria;
         this.id_gruppo = id_gruppo;
     }
 
@@ -58,8 +52,6 @@ public class Prodotto {
                 Printer.field("prezzo_inventario", prezzo_inventario),
                 Printer.field("codice_a_barre", codice_a_barre),
                 Printer.field("nome_stato", nome_stato),
-                Printer.field("id_categoria_statistica", id_categoria_statistica),
-                Printer.field("id_categoria", id_categoria),
                 Printer.field("id_gruppo", id_gruppo)
             )
         );
@@ -78,8 +70,6 @@ public class Prodotto {
                Objects.equals(prezzo_inventario, prodotto.prezzo_inventario) &&
                Objects.equals(codice_a_barre, prodotto.codice_a_barre) &&
                Objects.equals(nome_stato, prodotto.nome_stato) &&
-               Objects.equals(id_categoria_statistica, prodotto.id_categoria_statistica) &&
-               Objects.equals(id_categoria, prodotto.id_categoria) &&
                Objects.equals(id_gruppo, prodotto.id_gruppo);
     }
 
@@ -87,13 +77,12 @@ public class Prodotto {
     public int hashCode() {
         return Objects.hash(
             id_prodotto, prezzo_listino, descrizione, peso, superficie,
-            prezzo_inventario, codice_a_barre, nome_stato,
-            id_categoria_statistica, id_categoria, id_gruppo
+            prezzo_inventario, codice_a_barre, nome_stato, id_gruppo
         );
     }
 
     public static final class DAO {
-        public static Optional<Prodotto> find(Connection connection, String id_prodotto) {
+        public static Optional<Prodotto> find(Connection connection, int id_prodotto) {
             try (var stmt = DAOUtils.prepare(connection, Queries.FIND_PRODOTTO, id_prodotto); 
                 var rs   = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -106,8 +95,6 @@ public class Prodotto {
                         rs.getBigDecimal("prezzo_inventario"),
                         rs.getString("codice_a_barre"),
                         rs.getString("nome_stato"),
-                        rs.getInt("id_categoria_statistica"),
-                        rs.getInt("id_categoria"),
                         rs.getInt("id_gruppo")
                     );
                     return Optional.of(p);
@@ -132,15 +119,13 @@ public class Prodotto {
                         rs.getBigDecimal("prezzo_inventario"),
                         rs.getString("codice_a_barre"),
                         rs.getString("nome_stato"),
-                        rs.getInt("id_categoria_statistica"),
-                        rs.getInt("id_categoria"),
                         rs.getInt("id_gruppo")
                     );
                     list.add(p);
                 }
                 return list;
             } catch (Exception e) {
-                throw new DAOException("Errore durante il LOAD dei prodotti", e);
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
             }
             
         } 

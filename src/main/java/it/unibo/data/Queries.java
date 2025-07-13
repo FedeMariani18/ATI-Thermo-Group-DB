@@ -6,16 +6,29 @@ public final class Queries {
         FROM prodotti
         """;
     
-    public static final String LOAD_STATO_LAVORAZIONE = "SELECT * FROM StatoDiLavorazione";
-    
-    public static final String LOAD_ORDINI = "SELECT * FROM Ordine";
-    
-    public static final String LOAD_CLIENTI = "SELECT * FROM Cliente";
-    
     public static final String FIND_PRODOTTO = """
         SELECT *
         FROM prodotti
-        WHERE codice = ?
+        WHERE id_prodotto = ?
         """;
+    
+    public static final String LOAD_ARTICOLI = """
+        SELECT *
+        FROM articoli
+        """;
+    
+    public static final String FIND_ARTICOLO = """
+        SELECT *
+        FROM articoli
+        WHERE id_seriale = ?
+        """;
+
+	public static final String FIND_ARTICOLO_BY_PRODUCT = """
+        SELECT *
+        FROM articoli
+        WHERE id_prodotto = ?
+        """;
+    
+    
 
 }
