@@ -9,7 +9,7 @@ public class Controller {
     private DBModel model;
 
     public Controller() {
-        var connection = DAOUtils.localMySQLConnection("ati-thermo-group", "root", "");
+        var connection = DAOUtils.localMySQLConnection("ati_thermo_group", "root", "");
         model = new DBModel(connection, this);
         mainFrame = new MainFrame(this);
     }

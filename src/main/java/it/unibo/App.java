@@ -1,8 +1,6 @@
 package it.unibo;
 
 import it.unibo.controller.Controller;
-import it.unibo.data.DAOUtils;
-import it.unibo.model.DBModel;
 
 public class App {
     
