@@ -3,11 +3,11 @@ package it.unibo.view;
 import javax.swing.JPanel;
 
 import it.unibo.controller.Controller;
+import it.unibo.view.compraVendita.*;
 import it.unibo.view.menu.*;
-import it.unibo.view.produzione.DistintaBasePanel;
-import it.unibo.view.produzione.DistintaBasePassaggiPanel;
-import it.unibo.view.produzione.ProdottiPanel;
-import it.unibo.view.produzione.SchedeDiLavorazionePanel;
+import it.unibo.view.produzione.*;
+import it.unibo.view.magazzino.*;
+import it.unibo.view.risorseUmane.*;
 
 import javax.swing.JFrame;
 import java.awt.*;
@@ -64,11 +64,29 @@ public class MainFrame {
         return new DistintaBasePassaggiPanel(controller);
     }
 
-    
-
     //COMPRA VENDITA
     public JPanel getCompraVenditaPanel() {
         return new CompraVenditaPanel(controller);
+    }
+
+    public JPanel getVenditePanel() {
+        return new VenditePanel(controller);
+    }
+
+    public JPanel getAcquistiPanel() {
+        return new AcquistiPanel(controller);
+    }
+
+    public JPanel getOrdiniPanel() {
+        return new OrdiniPanel(controller);
+    }
+
+    public JPanel getClientiPanel() {
+        return new ClientiPanel(controller);
+    }
+
+    public JPanel getVenditoriPanel() {
+        return new VenditoriPanel(controller);
     }
 
     //RISORSE UMANE
@@ -76,8 +94,16 @@ public class MainFrame {
         return new RisorseUmanePanel(controller);
     }
 
+    public JPanel getDipendentiPanel() {
+        return new DipendentiPanel(controller);
+    }
+
     //MAGAZZINO
     public JPanel getMagazzinoPanel() {
         return new MagazzinoPanel(controller);    
+    }
+
+    public JPanel getMagazziniPanel() {
+        return new MagazziniPanel(controller); 
     }
 }

@@ -27,6 +27,10 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getProduzionePanel());    
     }
 
+    public void goToProdottiPanel() {
+        mainFrame.setPanel(mainFrame.getProdottiPanel());    
+    }
+
     public void goToSchedeDiLavorazionePanel() {
         mainFrame.setPanel(mainFrame.getSchedeDiLavorazionePanel());    
     }
@@ -39,20 +43,46 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getDistintaBasePassaggiPanel());    
     }
 
-    //COMPRAVENDITA
+    //COMPRA VENDITA
     public void goToCompraVenditaPanel() {
         mainFrame.setPanel(mainFrame.getCompraVenditaPanel());    
     }
 
+    public void goToVenditePanel() {
+        mainFrame.setPanel(mainFrame.getVenditePanel());
+    }
+
+    public void goToAcquistiPanel() {
+        mainFrame.setPanel(mainFrame.getAcquistiPanel());
+    }
+
+    public void goToOrdiniPanel() {
+        mainFrame.setPanel(mainFrame.getOrdiniPanel());
+    }
+
+    public void goToClientiPanel() {
+        mainFrame.setPanel(mainFrame.getClientiPanel());
+    }
+
+    public void goToVenditoriPanel() {
+        mainFrame.setPanel(mainFrame.getVenditoriPanel());
+    }
+
+    //RISORSE UMANE
     public void goToRisorseUmanePanel() {
         mainFrame.setPanel(mainFrame.getRisorseUmanePanel());    
     }
 
+    public void goToDipendentiPanel() {
+        mainFrame.setPanel(mainFrame.getDipendentiPanel());
+    }
+
+    //MAGAZZINO
     public void goToMagazzinoPanel() {
         mainFrame.setPanel(mainFrame.getMagazzinoPanel());    
     }
-    
-    public void goToProdottiPanel() {
-        mainFrame.setPanel(mainFrame.getProdottiPanel());    
+
+    public void goToMagazziniPanel() {
+        mainFrame.setPanel(mainFrame.getMagazziniPanel());
     }
 }

@@ -27,7 +27,7 @@ public class SchedeDiLavorazionePanel extends JPanel{
         JLabel label = new JLabel("Produzione Panel");
         add(label, BorderLayout.NORTH);
 
-        JButton btnBack = Constants.backButton(() -> controller.goToMenuPanel());
+        JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
         this.add(btnBack, BorderLayout.SOUTH);
 
         model = new DefaultTableModel(new String[]{"Codice Ordine", "Totale", "Cliente", "Stato"}, 0) {
