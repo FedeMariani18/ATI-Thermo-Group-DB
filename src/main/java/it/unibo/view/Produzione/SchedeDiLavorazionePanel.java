@@ -16,8 +16,8 @@ import it.unibo.controller.Controller;
 import it.unibo.data.Prodotto;
 
 public class SchedeDiLavorazionePanel extends JPanel{
-    private final DefaultTableModel model;
-    private final JTable table;
+    private DefaultTableModel model;
+    private JTable table;
     private final Controller controller;
 
     public SchedeDiLavorazionePanel(Controller controller) {
@@ -29,15 +29,23 @@ public class SchedeDiLavorazionePanel extends JPanel{
 
         JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
         this.add(btnBack, BorderLayout.SOUTH);
+        add(tablePanel(), BorderLayout.CENTER);
+        refreshTable();
+    }
 
-        model = new DefaultTableModel(new String[]{"Codice Ordine", "Totale", "Cliente", "Stato"}, 0) {
+    private JPanel tablePanel() {
+        JPanel tPanel = new JPanel();
+        tPanel.setLayout(new java.awt.GridLayout(1, 1));  // 2 righe, 1 colonna
+
+        model = new DefaultTableModel(new String[]{"codice fiscale", "id prodotto", "id seriale", "data", "ora inizio",
+        "ora fine"}, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
         table = new JTable(model);
 
-        refreshTable();
+        tPanel.add(new JScrollPane(table));
 
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        return tPanel;
     }
 
     private void refreshTable() {

@@ -29,6 +29,9 @@ public final class Queries {
         WHERE id_prodotto = ?
         """;
     
-    
+    public static final String LOAD_SCHEDE = """
+        SELECT *
+        FROM schede_di_lavorazione
+        """;
 
 }

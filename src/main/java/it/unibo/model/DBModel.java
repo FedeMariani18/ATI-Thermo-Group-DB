@@ -8,6 +8,7 @@ import java.util.Optional;
 import it.unibo.controller.Controller;
 import it.unibo.data.Articolo;
 import it.unibo.data.Prodotto;
+import it.unibo.data.SchedaDiLavorazione;
 
 public class DBModel {
     private final Connection connection;
@@ -30,5 +31,11 @@ public class DBModel {
 
     public List<Articolo> loadArticoli() {
         return Articolo.DAO.findAll(connection);
+    }
+
+    //SCHEDE DI LAVORAZIONE
+
+    public List<SchedaDiLavorazione> loadSchede() {
+        return SchedaDiLavorazione.DAO.findAll(connection);
     }
 }

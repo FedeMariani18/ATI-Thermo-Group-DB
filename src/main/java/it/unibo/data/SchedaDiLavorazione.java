@@ -1,7 +1,9 @@
 package it.unibo.data;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,5 +61,29 @@ public class SchedaDiLavorazione {
     @Override
     public int hashCode() {
         return Objects.hash(codice_fiscale, id_prodotto, id_seriale, data, ora_inizio, ora_fine);
+    }
+
+    public static final class DAO {
+        public static List<SchedaDiLavorazione> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_SCHEDE); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<SchedaDiLavorazione>();
+                while(rs.next()) {
+                    SchedaDiLavorazione p = new SchedaDiLavorazione(
+                        rs.getString("codice_fiscale"),
+                        rs.getInt("id_prodotto"),
+                        rs.getInt("id_seriale"),
+                        rs.getDate("data"),
+                        rs.getTime("ora_inizio"),
+                        rs.getTime("ora_fine"),
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        }
     }
 }
