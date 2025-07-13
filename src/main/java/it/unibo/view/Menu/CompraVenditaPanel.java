@@ -1,4 +1,4 @@
-package it.unibo.view.Menu;
+package it.unibo.view.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,4 +25,6 @@ public class CompraVenditaPanel extends JPanel {
         JButton btnBack = Constants.backButton(() -> controller.goToMenuPanel());
         this.add(btnBack, BorderLayout.SOUTH);
     }
+
+    
 }

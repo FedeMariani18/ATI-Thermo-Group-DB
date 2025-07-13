@@ -1,8 +1,7 @@
-package it.unibo.view.Menu;
+package it.unibo.view.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.util.function.Supplier;
 
 import javax.swing.JPanel;
 
@@ -21,7 +20,6 @@ public class ProduzionePanel extends JPanel{
 
     public ProduzionePanel(Controller controller) {
         this.controller = controller;
-        // Initialize the panel with components related to production
         setLayout(new BorderLayout());
         setBackground(Color.CYAN);
         JLabel label = new JLabel("Produzione Panel");
@@ -38,11 +36,17 @@ public class ProduzionePanel extends JPanel{
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         JButton btnProdotti = ButtonFactory.createButton("Prodotti", () -> controller.goToProdottiPanel());
         JButton btnSchedeDiLavorazione = ButtonFactory.createButton("Schede Di Lavorazione", () -> controller.goToProdottiPanel());
+        JButton btnDistintaBase = ButtonFactory.createButton("Distinta Base", () -> controller.goToDistintaBasePanel());
+        JButton btnDistintaBasePassaggi = ButtonFactory.createButton("Distinta Base Passaggi", () -> controller.goToDistintaBasePassaggiPanel());
         
         buttonPanel.add(Box.createVerticalGlue());
         buttonPanel.add(btnProdotti, CENTER_ALIGNMENT);
         buttonPanel.add(Box.createVerticalStrut(20)); // Spazio verticale
         buttonPanel.add(btnSchedeDiLavorazione, CENTER_ALIGNMENT);
+        buttonPanel.add(Box.createVerticalStrut(20));
+        buttonPanel.add(btnDistintaBase, CENTER_ALIGNMENT);
+        buttonPanel.add(Box.createVerticalStrut(20));
+        buttonPanel.add(btnDistintaBasePassaggi, CENTER_ALIGNMENT);
         buttonPanel.add(Box.createVerticalGlue());
         return buttonPanel;
     }

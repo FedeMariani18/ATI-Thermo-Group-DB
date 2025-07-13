@@ -1,9 +1,8 @@
-package it.unibo.view.Menu;
+package it.unibo.view.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,4 +24,6 @@ public class MagazzinoPanel extends JPanel {
         JButton btnBack = Constants.backButton(() -> controller.goToMenuPanel());
         this.add(btnBack, BorderLayout.SOUTH);
     }
+
+    
 }

@@ -3,8 +3,11 @@ package it.unibo.view;
 import javax.swing.JPanel;
 
 import it.unibo.controller.Controller;
-import it.unibo.view.Menu.*;
-import it.unibo.view.Produzione.ProdottiPanel;
+import it.unibo.view.menu.*;
+import it.unibo.view.produzione.DistintaBasePanel;
+import it.unibo.view.produzione.DistintaBasePassaggiPanel;
+import it.unibo.view.produzione.ProdottiPanel;
+import it.unibo.view.produzione.SchedeDiLavorazionePanel;
 
 import javax.swing.JFrame;
 import java.awt.*;
@@ -48,6 +51,20 @@ public class MainFrame {
     public JPanel getProdottiPanel() {
         return new ProdottiPanel(controller);
     }
+
+    public JPanel getSchedeDiLavorazionePanel() {
+        return new SchedeDiLavorazionePanel(controller);
+    }
+
+    public JPanel getDistintaBasePanel() {
+        return new DistintaBasePanel(controller);
+    }
+
+    public JPanel getDistintaBasePassaggiPanel() {
+        return new DistintaBasePassaggiPanel(controller);
+    }
+
+    
 
     //COMPRA VENDITA
     public JPanel getCompraVenditaPanel() {

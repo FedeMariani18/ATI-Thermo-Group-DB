@@ -15,12 +15,13 @@ import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.Prodotto;
 
-public class ProdottiPanel extends JPanel {
+public class DistintaBasePanel extends JPanel {
+    private static final long serialVersionUID = 1L; // Added for serialization
     private final DefaultTableModel model;
     private final JTable table;
     private final Controller controller;
 
-    public ProdottiPanel(Controller controller) {
+    public DistintaBasePanel(Controller controller) {
         this.controller = controller;
         setBackground(Color.CYAN);
         setLayout(new BorderLayout());
@@ -59,6 +60,4 @@ public class ProdottiPanel extends JPanel {
             });
         }
     }
-
-
 }

@@ -22,10 +22,24 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getMenuPanel());
     }
 
+    //PRODUZIONE
     public void goToProduzionePanel() {
         mainFrame.setPanel(mainFrame.getProduzionePanel());    
     }
 
+    public void goToSchedeDiLavorazionePanel() {
+        mainFrame.setPanel(mainFrame.getSchedeDiLavorazionePanel());    
+    }
+
+    public void goToDistintaBasePanel() {
+        mainFrame.setPanel(mainFrame.getDistintaBasePanel());    
+    }
+
+    public void goToDistintaBasePassaggiPanel() {
+        mainFrame.setPanel(mainFrame.getDistintaBasePassaggiPanel());    
+    }
+
+    //COMPRAVENDITA
     public void goToCompraVenditaPanel() {
         mainFrame.setPanel(mainFrame.getCompraVenditaPanel());    
     }
