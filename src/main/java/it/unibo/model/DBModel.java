@@ -31,4 +31,8 @@ public class DBModel {
     public List<Articolo> loadArticoli() {
         return Articolo.DAO.findAll(connection);
     }
+
+    public List<Articolo> loadArticoliByProducts(int idProdotto) {
+        return Articolo.DAO.findByProduct(connection, idProdotto);
+    }
 }

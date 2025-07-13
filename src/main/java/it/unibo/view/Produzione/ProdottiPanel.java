@@ -2,6 +2,7 @@ package it.unibo.view.produzione;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.nio.channels.AcceptPendingException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -9,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
@@ -33,7 +35,8 @@ public class ProdottiPanel extends JPanel {
         JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
         this.add(btnBack, BorderLayout.SOUTH);
         add(tablePanel(), BorderLayout.CENTER);
-        refreshTable();
+        refreshTableProdotti();
+        refreshTableArticoli();
     }
 
     private JPanel tablePanel() {
@@ -52,12 +55,17 @@ public class ProdottiPanel extends JPanel {
         };
         tableArticoli = new JTable(modelArticoli);
 
+        tableProdotti.getSelectionModel().addListSelectionListener(event -> {
+            if (!event.getValueIsAdjusting()) {
+                refreshTableArticoli();
+            }
+        });
         tPanel.add(new JScrollPane(tableProdotti));
         tPanel.add(new JScrollPane(tableArticoli));
         return tPanel;
     }
 
-    private void refreshTable() {
+    private void refreshTableProdotti() {
         modelProdotti.setRowCount(0);
         List<Prodotto> prodotti = controller.getModel().loadProdotti();
         for (Prodotto p : prodotti) {
@@ -73,9 +81,13 @@ public class ProdottiPanel extends JPanel {
                 p.id_gruppo
             });
         }
+    }
 
+    private void refreshTableArticoli() {
         modelArticoli.setRowCount(0);
-        List<Articolo> articoli = controller.getModel().loadArticoli();
+        int row = tableProdotti.getSelectedRow()>= 0? tableProdotti.getSelectedRow() : 0;
+        int id_prodotto = (int)modelProdotti.getValueAt(row, 0) ;
+        List<Articolo> articoli = controller.getModel().loadArticoliByProducts(id_prodotto);
         for (Articolo a : articoli) {
             modelArticoli.addRow(new Object[]{
                 a.id_prodotto,
@@ -89,6 +101,4 @@ public class ProdottiPanel extends JPanel {
             });
         }
     }
-
-
 }
