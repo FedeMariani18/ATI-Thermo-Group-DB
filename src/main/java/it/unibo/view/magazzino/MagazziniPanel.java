@@ -13,11 +13,11 @@ import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
-import it.unibo.data.Prodotto;
+import it.unibo.data.Magazzino;
 
 public class MagazziniPanel extends JPanel {
-    private final DefaultTableModel model;
-    private final JTable table;
+    private DefaultTableModel model;
+    private JTable table;
     private final Controller controller;
 
     public MagazziniPanel(Controller controller) {
@@ -27,36 +27,37 @@ public class MagazziniPanel extends JPanel {
         JLabel label = new JLabel("Produzione Panel");
         add(label, BorderLayout.NORTH);
 
-        JButton btnBack = Constants.backButton(() -> controller.goToMenuPanel());
+        JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
         this.add(btnBack, BorderLayout.SOUTH);
+        add(tablePanel(), BorderLayout.CENTER);
+        refreshTable();
+    }
 
-        model = new DefaultTableModel(new String[]{"Codice Ordine", "Totale", "Cliente", "Stato"}, 0) {
+    private JPanel tablePanel() {
+        JPanel tPanel = new JPanel();
+        tPanel.setLayout(new java.awt.GridLayout(1, 1));
+
+        model = new DefaultTableModel(new String[]{"id magazzino", "nome", "via", "civico", "nome città"}, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
         table = new JTable(model);
 
-        refreshTable();
+        tPanel.add(new JScrollPane(table));
 
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        return tPanel;
     }
 
     private void refreshTable() {
-        // model.setRowCount(0);
-        // List<Prodotto> prodotti = controller.getModel().loadProdotti();
-        // for (Prodotto p : prodotti) {
-        //     model.addRow(new Object[]{
-        //         p.id_prodotto,
-        //         p.prezzo_listino,
-        //         p.descrizione,
-        //         p.peso,
-        //         p.superficie,
-        //         p.prezzo_inventario,
-        //         p.codice_a_barre,
-        //         p.nome_stato,
-        //         p.id_categoria_statistica,
-        //         p.id_categoria,
-        //         p.id_gruppo
-        //     });
-        // }
+        model.setRowCount(0);
+        List<Magazzino> magazzini = controller.getModel().loadMagazzini();
+        for (Magazzino p : magazzini) {
+            model.addRow(new Object[]{
+                p.id_magazzino,
+                p.nome,
+                p.via,
+                p.civico,
+                p.nome_citta
+            });
+        }
     }
 }

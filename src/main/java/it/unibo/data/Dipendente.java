@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,5 +48,28 @@ public class Dipendente {
     @Override
     public int hashCode() {
         return Objects.hash(codice_fiscale, nome, cognome, anno_di_nascita, nome_ruolo);
+    }
+
+    public static final class DAO {
+        public static List<Dipendente> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_DIPENDENTI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Dipendente>();
+                while(rs.next()) {
+                    Dipendente p = new Dipendente(
+                        rs.getString("codice_fiscale"),
+                        rs.getString("nome"),
+                        rs.getString("cognome"),
+                        rs.getInt("anno_di_nascita"),
+                        rs.getString("nome_ruolo")
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        }
     }
 }

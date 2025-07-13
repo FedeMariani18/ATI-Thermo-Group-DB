@@ -14,8 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.DistintaBase;
-import it.unibo.data.Prodotto;
-import it.unibo.data.SchedaDiLavorazione;
 
 public class DistintaBasePanel extends JPanel {
     private DefaultTableModel model;

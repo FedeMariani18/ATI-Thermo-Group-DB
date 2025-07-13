@@ -13,10 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
-import it.unibo.data.DistintaBase;
 import it.unibo.data.DistintaBasePassaggi;
-import it.unibo.data.Prodotto;
-import it.unibo.view.produzione.DistintaBasePanel;
 
 public class DistintaBasePassaggiPanel extends JPanel {
     private static final long serialVersionUID = 1L; // Added for serialization

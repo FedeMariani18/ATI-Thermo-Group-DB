@@ -44,6 +44,13 @@ public final class Queries {
         FROM distinte_base_passaggi
         """;
 
-    
+    public static final String LOAD_DIPENDENTI = """
+        SELECT *
+        FROM dipendenti
+        """;
 
+    public static final String LOAD_MAGAZZINI = """
+        SELECT *
+        FROM magazzini
+        """;
 }
