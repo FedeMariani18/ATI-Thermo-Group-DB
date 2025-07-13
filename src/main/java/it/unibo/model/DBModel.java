@@ -33,6 +33,10 @@ public class DBModel {
         return Articolo.DAO.findAll(connection);
     }
 
+    public List<Articolo> loadArticoliByProducts(int idProdotto) {
+        return Articolo.DAO.findByProduct(connection, idProdotto);
+    }
+
     //SCHEDE DI LAVORAZIONE
 
     public List<SchedaDiLavorazione> loadSchede() {
