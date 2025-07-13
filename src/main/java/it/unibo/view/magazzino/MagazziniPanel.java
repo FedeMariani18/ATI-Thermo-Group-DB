@@ -27,7 +27,7 @@ public class MagazziniPanel extends JPanel {
         JLabel label = new JLabel("Produzione Panel");
         add(label, BorderLayout.NORTH);
 
-        JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
+        JButton btnBack = Constants.backButton(() -> controller.goToMagazzinoPanel());
         this.add(btnBack, BorderLayout.SOUTH);
         add(tablePanel(), BorderLayout.CENTER);
         refreshTable();

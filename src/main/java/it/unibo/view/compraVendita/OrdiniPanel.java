@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.Ordine;
-import it.unibo.data.Prodotto;
 
 public class OrdiniPanel extends JPanel{
     private final DefaultTableModel model;

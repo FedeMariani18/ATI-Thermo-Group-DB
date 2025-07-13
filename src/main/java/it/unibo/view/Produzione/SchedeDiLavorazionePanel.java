@@ -1,4 +1,4 @@
-package it.unibo.view.produzione;
+package it.unibo.view.Produzione;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
-import it.unibo.data.Prodotto;
 import it.unibo.data.SchedaDiLavorazione;
 
 public class SchedeDiLavorazionePanel extends JPanel{

@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.BollaVendita;
-import it.unibo.data.Prodotto;
 
 public class VenditePanel extends JPanel{
     private final DefaultTableModel model;

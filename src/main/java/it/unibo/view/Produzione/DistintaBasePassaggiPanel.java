@@ -1,4 +1,4 @@
-package it.unibo.view.produzione;
+package it.unibo.view.Produzione;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

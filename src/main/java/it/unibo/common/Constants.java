@@ -3,9 +3,6 @@ package it.unibo.common;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 import javax.swing.JButton;
 
 public final class Constants {

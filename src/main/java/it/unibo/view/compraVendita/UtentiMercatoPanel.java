@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
-import it.unibo.data.Prodotto;
 import it.unibo.data.UtenteMercato;
 
 public class UtentiMercatoPanel extends JPanel{

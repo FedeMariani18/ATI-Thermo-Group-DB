@@ -1,8 +1,7 @@
-package it.unibo.view.produzione;
+package it.unibo.view.Produzione;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.nio.channels.AcceptPendingException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -10,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;

@@ -15,15 +15,15 @@ import it.unibo.common.ButtonFactory;
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 
-public class RisorseUmanePanel extends JPanel {
+public class OperazioniPanel extends JPanel {
     private final Controller controller;
     
-    public RisorseUmanePanel(Controller controller) {
+    public OperazioniPanel(Controller controller) {
         this.controller = controller;
         // Initialize the panel with components related to production
         setLayout(new BorderLayout());
         setBackground(Color.CYAN);
-        JLabel label = new JLabel("Risorse Umane");
+        JLabel label = new JLabel("Operazioni");
         add(label, BorderLayout.NORTH);
 
         JButton btnBack = Constants.backButton(() -> controller.goToMenuPanel());
@@ -34,7 +34,10 @@ public class RisorseUmanePanel extends JPanel {
     private JPanel buttonsPanel() {
         JPanel buttonPanel = new JPanel();
         List<JButton> buttons = List.of(
-            ButtonFactory.createButton("Dipendenti", () -> controller.goToDipendentiPanel())
+            ButtonFactory.createButton("operazione1", () -> {}),
+            ButtonFactory.createButton("operazione2", () -> {}),
+            ButtonFactory.createButton("operazione3", () -> {}),
+            ButtonFactory.createButton("operazione4", () -> {})  
         );
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         
@@ -45,7 +48,6 @@ public class RisorseUmanePanel extends JPanel {
             buttonPanel.add(Box.createVerticalStrut(20)); // Spazio verticale tra i pulsanti
         });
         buttonPanel.add(Box.createVerticalGlue());
-
         buttonPanel.setBackground(Color.CYAN);
         return buttonPanel;
     }

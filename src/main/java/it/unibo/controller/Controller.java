@@ -81,4 +81,10 @@ public class Controller {
     public void goToMagazziniPanel() {
         mainFrame.setPanel(mainFrame.getMagazziniPanel());
     }
+
+    //OPERAZIONI
+
+    public void goToOperazioniPanel() {
+        mainFrame.setPanel(mainFrame.getOperazioniPanel());
+    }
 }

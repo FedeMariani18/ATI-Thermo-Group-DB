@@ -61,7 +61,15 @@ public class MenuPanel extends JPanel {
             }
         });
 
-        buttons.addAll(List.of(btnProduzione, btnCompaVendita, btnRisorseUmane, btnMagazzino));
+        JButton btnOperazioni = new JButton("Operazioni");
+        btnOperazioni.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.goToOperazioniPanel();
+            }
+        });
+
+        buttons.addAll(List.of(btnProduzione, btnCompaVendita, btnRisorseUmane, btnMagazzino, btnOperazioni));
 
         buttons.forEach(button -> {
             button.setAlignmentX(CENTER_ALIGNMENT);
