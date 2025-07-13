@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
+import it.unibo.data.Ordine;
 import it.unibo.data.Prodotto;
 
 public class OrdiniPanel extends JPanel{
@@ -27,10 +28,10 @@ public class OrdiniPanel extends JPanel{
         JLabel label = new JLabel("Produzione Panel");
         add(label, BorderLayout.NORTH);
 
-        JButton btnBack = Constants.backButton(() -> controller.goToMenuPanel());
+        JButton btnBack = Constants.backButton(() -> controller.goToCompraVenditaPanel());
         this.add(btnBack, BorderLayout.SOUTH);
 
-        model = new DefaultTableModel(new String[]{"Codice Ordine", "Totale", "Cliente", "Stato"}, 0) {
+        model = new DefaultTableModel(new String[]{"id Ordine", "data", "partita iva"}, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
         table = new JTable(model);
@@ -41,22 +42,14 @@ public class OrdiniPanel extends JPanel{
     }
 
     private void refreshTable() {
-        // model.setRowCount(0);
-        // List<Prodotto> prodotti = controller.getModel().loadProdotti();
-        // for (Prodotto p : prodotti) {
-        //     model.addRow(new Object[]{
-        //         p.id_prodotto,
-        //         p.prezzo_listino,
-        //         p.descrizione,
-        //         p.peso,
-        //         p.superficie,
-        //         p.prezzo_inventario,
-        //         p.codice_a_barre,
-        //         p.nome_stato,
-        //         p.id_categoria_statistica,
-        //         p.id_categoria,
-        //         p.id_gruppo
-        //     });
-        // }
+        model.setRowCount(0);
+        List<Ordine> ordini = controller.getModel().loadOrdini();
+        for (Ordine o : ordini) {
+            model.addRow(new Object[]{
+                o.id_ordine, 
+                o.data, 
+                o.p_iva
+            });
+        }
     }
 }

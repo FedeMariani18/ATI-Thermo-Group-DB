@@ -37,8 +37,7 @@ public class CompraVenditaPanel extends JPanel {
             ButtonFactory.createButton("Vendite", () -> controller.goToVenditePanel()),
             ButtonFactory.createButton("Acquisti", () -> controller.goToAcquistiPanel()),
             ButtonFactory.createButton("Ordini", () -> controller.goToOrdiniPanel()),
-            ButtonFactory.createButton("Clienti", () -> controller.goToClientiPanel()),
-            ButtonFactory.createButton("Venditori", () -> controller.goToVenditoriPanel())    
+            ButtonFactory.createButton("Clienti", () -> controller.goToUtentiMercatoPanel())  
         );
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         

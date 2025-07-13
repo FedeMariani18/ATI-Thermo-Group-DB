@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,5 +72,48 @@ public class UtenteMercato {
             p_iva, nome, nazione, banca, id_pagamento,
             nome_tipologia_utente_mercato, id_sconto_prodotto, id_sconto_complessivo
         );
+    }
+
+    public static final class DAO {
+        public static List<UtenteMercato> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_UTENTI_MERCATO); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<UtenteMercato>();
+                while(rs.next()) {
+                    UtenteMercato u = new UtenteMercato(
+                        rs.getString("p_iva"),
+                        rs.getString("nome"),
+                        rs.getString("nazione"),
+                        rs.getString("banca"),
+                        rs.getInt("id_pagamento"),
+                        rs.getString("nome_tipologia_utente_mercato"),
+                        rs.getInt("id_sconto_prodotto"),
+                        rs.getInt("id_sconto_complessivo")
+                    );
+                    list.add(u);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
+
+        // public static List<BollaAcquisto> findAllJoinedVenditori(Connection connection) {
+        //     try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_BOLLE_ACQUISTO_JOINED_VENDITORI); 
+        //         var rs   = stmt.executeQuery()) {
+        //         var list = new ArrayList<BollaAcquisto>();
+        //         while(rs.next()) {
+        //             BollaAcquisto ba = new BollaAcquisto(
+        //                 rs.getInt("id_bolla_acquisto"),
+        //                 rs.getDate("data"),
+        //                 rs.getString("p_iva")
+        //             );
+        //             list.add(ba);
+        //         }
+        //         return list;
+        //     } catch (Exception e) {
+        //         throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+        //     }
+        // }
     }
 }

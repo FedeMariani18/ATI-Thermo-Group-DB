@@ -34,4 +34,30 @@ public final class Queries {
         FROM schede_di_lavorazione
         """;
 
+    public static final String LOAD_BOLLE_ACQUISTO = """
+        SELECT *
+        FROM bolle_acquisto
+        """;
+
+    public static final String LOAD_BOLLE_ACQUISTO_JOINED_VENDITORI = """
+        SELECT *
+        FROM bolle_acquisto, utenti_mercato
+        WHERE bolle_acquisto.p_iva == utenti_mercato.p_iva
+        """;
+
+    public static final String LOAD_UTENTI_MERCATO = """
+        SELECT *
+        FROM utenti_mercato
+        """;
+
+    public static final String LOAD_ORDINI = """
+        SELECT *
+        FROM ordini
+        """;
+
+    public static final String LOAD_BOLLE_VENDITA = """
+        SELECT *
+        FROM bolle_vendita
+        """;
+
 }

@@ -81,12 +81,8 @@ public class MainFrame {
         return new OrdiniPanel(controller);
     }
 
-    public JPanel getClientiPanel() {
-        return new ClientiPanel(controller);
-    }
-
-    public JPanel getVenditoriPanel() {
-        return new VenditoriPanel(controller);
+    public JPanel getUtentiMercatoPanel() {
+        return new UtentiMercatoPanel(controller);
     }
 
     //RISORSE UMANE

@@ -60,12 +60,8 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getOrdiniPanel());
     }
 
-    public void goToClientiPanel() {
-        mainFrame.setPanel(mainFrame.getClientiPanel());
-    }
-
-    public void goToVenditoriPanel() {
-        mainFrame.setPanel(mainFrame.getVenditoriPanel());
+    public void goToUtentiMercatoPanel() {
+        mainFrame.setPanel(mainFrame.getUtentiMercatoPanel());
     }
 
     //RISORSE UMANE

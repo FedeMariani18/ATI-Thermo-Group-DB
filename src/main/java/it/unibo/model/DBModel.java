@@ -7,8 +7,12 @@ import java.util.Optional;
 
 import it.unibo.controller.Controller;
 import it.unibo.data.Articolo;
+import it.unibo.data.BollaAcquisto;
+import it.unibo.data.BollaVendita;
+import it.unibo.data.Ordine;
 import it.unibo.data.Prodotto;
 import it.unibo.data.SchedaDiLavorazione;
+import it.unibo.data.UtenteMercato;
 
 public class DBModel {
     private final Connection connection;
@@ -20,7 +24,7 @@ public class DBModel {
         this.controller = controller;
     }
 
-    //PRODOTTI
+    //PRODUZIONE
     public List<Prodotto> loadProdotti() {
         return Prodotto.DAO.findAll(connection);
     }
@@ -41,5 +45,22 @@ public class DBModel {
 
     public List<SchedaDiLavorazione> loadSchede() {
         return SchedaDiLavorazione.DAO.findAll(connection);
+    }
+
+    //COMPRA E VENDITA
+    public List<BollaAcquisto> loadBolleAcquisti() {
+        return BollaAcquisto.DAO.findAll(connection);
+    }
+
+    public List<UtenteMercato> loadUtentiMercato() {
+        return UtenteMercato.DAO.findAll(connection);
+    }
+
+    public List<Ordine> loadOrdini() {
+        return Ordine.DAO.findAll(connection);
+    }
+
+    public List<BollaVendita> loadBolleVendite() {
+        return BollaVendita.DAO.findAll(connection);
     }
 }

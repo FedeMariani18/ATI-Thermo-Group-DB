@@ -1,6 +1,8 @@
 package it.unibo.data;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,5 +41,43 @@ public class BollaAcquisto {
     @Override
     public int hashCode() {
         return Objects.hash(id_bolla_acquisto, data, p_iva);
+    }
+
+    public static final class DAO {
+        public static List<BollaAcquisto> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_BOLLE_ACQUISTO); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<BollaAcquisto>();
+                while(rs.next()) {
+                    BollaAcquisto ba = new BollaAcquisto(
+                        rs.getInt("id_bolla_acquisto"),
+                        rs.getDate("data"),
+                        rs.getString("p_iva")
+                    );
+                    list.add(ba);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
+
+        // public static List<BollaAcquisto> findAllJoinedVenditori(Connection connection) {
+        //     try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_BOLLE_ACQUISTO_JOINED_VENDITORI); 
+        //         var rs   = stmt.executeQuery()) {
+        //         var list = new ArrayList<BollaAcquisto>();
+        //         while(rs.next()) {
+        //             BollaAcquisto ba = new BollaAcquisto(
+        //                 rs.getInt("id_bolla_acquisto"),
+        //                 rs.getDate("data"),
+        //                 rs.getString("p_iva")
+        //             );
+        //             list.add(ba);
+        //         }
+        //         return list;
+        //     } catch (Exception e) {
+        //         throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+        //     }
+        // }
     }
 }
