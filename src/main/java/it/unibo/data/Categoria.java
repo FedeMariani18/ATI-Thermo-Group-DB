@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,5 +40,25 @@ public class Categoria {
     @Override
     public int hashCode() {
         return Objects.hash(id_categoria_statistica, id_categoria, descrizione);
+    }
+
+    public static final class DAO {
+        public static List<Categoria> categoriaVenduta(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_CATEGORIA_VENDUTA); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Categoria>();
+                while(rs.next()) {
+                    Categoria ba = new Categoria(
+                        rs.getInt("NumeroProdottiVenduti"),
+                        rs.getInt("id_categoria"),
+                        rs.getString("descrizione")
+                    );
+                    list.add(ba);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
     }
 }

@@ -11,13 +11,18 @@ public class Magazzino {
     public String via;
     public String civico;
     public String nome_citta;
+    public int capacita_max;
+    public int capacita_residua;
 
-    public Magazzino(int id_magazzino, String nome, String via, String civico, String nome_citta) {
+    public Magazzino(int id_magazzino, String nome, String via, String civico, String nome_citta, 
+        int capacita_max, int capacita_residua) {
         this.id_magazzino = id_magazzino;
         this.nome = nome;
         this.via = via;
         this.civico = civico;
         this.nome_citta = nome_citta;
+        this.capacita_max = capacita_max;
+        this.capacita_residua = capacita_residua;
     }
 
     @Override
@@ -61,7 +66,9 @@ public class Magazzino {
                         rs.getString("nome"),
                         rs.getString("via"),
                         rs.getString("civico"),
-                        rs.getString("nome_città")
+                        rs.getString("nome_città"),
+                        rs.getInt("capacita_max"),
+                        rs.getInt("capacita_residua")
                     );
                     list.add(p);
                 }

@@ -99,4 +99,8 @@ public class Controller {
     public void goToOperazioni1Panel() {
         mainFrame.setPanel(mainFrame.getOperazioni1Panel());
     }
+
+    public void goToOperazioni2Panel() {
+        mainFrame.setPanel(mainFrame.getOperazioni2Panel());
+    }
 }

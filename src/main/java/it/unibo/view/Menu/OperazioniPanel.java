@@ -36,7 +36,8 @@ public class OperazioniPanel extends JPanel {
         List<JButton> buttons = List.of(
             ButtonFactory.createButton("Calcolare tempo di lavorazione effettivo per un articolo e quello stimato", 
                 () -> {controller.goToOperazioni1Panel();}),
-            ButtonFactory.createButton("operazione2", () -> {}),
+            ButtonFactory.createButton("Identificare la categoria di prodotto più venduta negli ultimi 10 anni", 
+                () -> {controller.goToOperazioni2Panel();}),
             ButtonFactory.createButton("operazione3", () -> {}),
             ButtonFactory.createButton("operazione4", () -> {})  
         );

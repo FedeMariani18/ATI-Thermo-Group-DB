@@ -9,6 +9,7 @@ import it.unibo.controller.Controller;
 import it.unibo.data.Articolo;
 import it.unibo.data.BollaAcquisto;
 import it.unibo.data.BollaVendita;
+import it.unibo.data.Categoria;
 import it.unibo.data.Ordine;
 import it.unibo.data.Dipendente;
 import it.unibo.data.DistintaBase;
@@ -114,5 +115,9 @@ public class DBModel {
 
     public List<Integer> tempoPerArticolo(int id_articolo) {
         return Articolo.DAO.tempoPerArticolo(connection, id_articolo);
+    }
+
+    public List<Categoria> categoriaVenduta() {
+        return Categoria.DAO.categoriaVenduta(connection);
     }
 }

@@ -122,5 +122,17 @@ public final class Queries {
         ) AS TempoStimato;
     """;
 
-    
+    public static final String LOAD_CATEGORIA_VENDUTA = """
+        SELECT C.id_categoria, C.descrizione, COUNT(*) AS NumeroProdottiVenduti
+        FROM BOLLE_VENDITA B
+        JOIN ARTICOLI A ON B.id_bolla_vendita = A.id_bolla_vendita
+        JOIN PRODOTTI P ON A.id_prodotto = P.id_prodotto
+        JOIN GRUPPI G ON P.id_gruppo = G.id_gruppo
+        JOIN CATEGORIE C ON G.id_categoria = C.id_categoria
+        WHERE B.data >= DATE_SUB(CURDATE(), INTERVAL 10 YEAR)
+        GROUP BY C.id_categoria, C.descrizione
+        ORDER BY NumeroProdottiVenduti DESC
+        LIMIT 1;
+
+    """;
 }
