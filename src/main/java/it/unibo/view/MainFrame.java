@@ -64,6 +64,10 @@ public class MainFrame {
         return new DistintaBasePassaggiPanel(controller);
     }
 
+    public JPanel getAggiuntaProdottoPanel() {
+        return new AggiungiProdottoPanel(controller);
+    }
+
     //COMPRA VENDITA
     public JPanel getCompraVenditaPanel() {
         return new CompraVenditaPanel(controller);
@@ -108,4 +112,5 @@ public class MainFrame {
     public JPanel getOperazioniPanel() {
         return new OperazioniPanel(controller);
     }
+
 }

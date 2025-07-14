@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import it.unibo.common.ButtonFactory;
 import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.Articolo;
@@ -27,8 +28,9 @@ public class ProdottiPanel extends JPanel {
         this.controller = controller;
         setBackground(Color.CYAN);
         setLayout(new BorderLayout());
-        JLabel label = new JLabel("Produzione Panel");
-        add(label, BorderLayout.NORTH);
+        
+        JButton btnAggiungiProdotto = ButtonFactory.createButton("AggiungiProdotto", () -> controller.goToAggiuntaProdottoPanel());
+        add(btnAggiungiProdotto, BorderLayout.NORTH);
 
         JButton btnBack = Constants.backButton(() -> controller.goToProduzionePanel());
         this.add(btnBack, BorderLayout.SOUTH);

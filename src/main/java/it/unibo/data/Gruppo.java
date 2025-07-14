@@ -1,5 +1,7 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,5 +44,29 @@ public class Gruppo {
     @Override
     public int hashCode() {
         return Objects.hash(id_categoria_statistica, id_categoria, id_gruppo, descrizione);
+    }
+
+    public final static class DAO {
+
+        public static List<Gruppo> findAll(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_GRUPPI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Gruppo>();
+                while(rs.next()) {
+                    Gruppo g = new Gruppo(
+                        rs.getInt("id_categoria_statistica"),
+                        rs.getInt("id_categoria"),
+                        rs.getInt("id_gruppo"),
+                        rs.getString("descrizione")
+                    );
+                    list.add(g);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        
+        }
+
     }
 }

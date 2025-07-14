@@ -13,9 +13,11 @@ import it.unibo.data.Ordine;
 import it.unibo.data.Dipendente;
 import it.unibo.data.DistintaBase;
 import it.unibo.data.DistintaBasePassaggi;
+import it.unibo.data.Gruppo;
 import it.unibo.data.Magazzino;
 import it.unibo.data.Prodotto;
 import it.unibo.data.SchedaDiLavorazione;
+import it.unibo.data.StatoDiLavorazione;
 import it.unibo.data.UtenteMercato;
 
 public class DBModel {
@@ -89,5 +91,13 @@ public class DBModel {
 
     public List<Magazzino> loadMagazzini() {
         return Magazzino.DAO.findAll(connection);
+    }
+
+    public List<String> loadNomiStatiDiLavorazione() {
+        return StatoDiLavorazione.DAO.findAllNomeStato(connection);    
+    }
+
+    public List<Gruppo> loadGruppi() {
+        return Gruppo.DAO.findAll(connection);
     }
 }

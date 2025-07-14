@@ -79,4 +79,14 @@ public final class Queries {
         SELECT *
         FROM magazzini
         """;
+
+    public static final String LOAD_NOMI_DI_LAVROAZIONE = """
+        SELECT nome_stato
+        FROM stati_di_lavorazione
+        """;
+
+    public static final String LOAD_GRUPPI = """
+        SELECT *
+        FROM gruppi
+        """;
 }

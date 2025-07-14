@@ -43,6 +43,10 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getDistintaBasePassaggiPanel());    
     }
 
+    public void goToAggiuntaProdottoPanel() {
+        mainFrame.setPanel(mainFrame.getAggiuntaProdottoPanel());
+    }
+
     //COMPRA VENDITA
     public void goToCompraVenditaPanel() {
         mainFrame.setPanel(mainFrame.getCompraVenditaPanel());    
@@ -87,4 +91,5 @@ public class Controller {
     public void goToOperazioniPanel() {
         mainFrame.setPanel(mainFrame.getOperazioniPanel());
     }
+
 }

@@ -1,7 +1,10 @@
 package it.unibo.data;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class StatoDiLavorazione {
     public String nome_stato;
@@ -35,4 +38,21 @@ public class StatoDiLavorazione {
     public int hashCode() {
         return Objects.hash(nome_stato, descrizione);
     }
+
+    public static final class DAO {
+        public static List<String> findAllNomeStato(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_NOMI_DI_LAVROAZIONE); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<String>();
+                while(rs.next()) {
+                    String nome_stato = rs.getString("nome_stato");
+                    list.add(nome_stato);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        } 
+    } 
 }
