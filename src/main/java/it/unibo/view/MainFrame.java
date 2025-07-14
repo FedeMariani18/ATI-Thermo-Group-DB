@@ -89,6 +89,10 @@ public class MainFrame {
         return new UtentiMercatoPanel(controller);
     }
 
+    public JPanel getBollaAcquistiPanel() {
+        return new BollaAcquistiPanel(controller);
+    }
+
     //RISORSE UMANE
     public JPanel getRisorseUmanePanel() {
         return new RisorseUmanePanel(controller);

@@ -68,6 +68,10 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getUtentiMercatoPanel());
     }
 
+    public void goToBollaAcquistiPanel() {
+        mainFrame.setPanel(mainFrame.getBollaAcquistiPanel());
+    }
+
     //RISORSE UMANE
     public void goToRisorseUmanePanel() {
         mainFrame.setPanel(mainFrame.getRisorseUmanePanel());    

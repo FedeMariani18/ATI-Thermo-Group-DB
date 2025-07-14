@@ -89,4 +89,9 @@ public final class Queries {
         SELECT *
         FROM gruppi
         """;
+    
+    public static final String INSERT_BOLLA_ACQUISTO = """
+        INSERT INTO BOLLE_ACQUISTO (id_bolla_acquisto, data, p_iva)
+        VALUES (?, ?, ?)
+        """;
 }

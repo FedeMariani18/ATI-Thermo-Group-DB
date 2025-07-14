@@ -2,6 +2,7 @@ package it.unibo.data;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -57,6 +58,25 @@ public class BollaAcquisto {
                     list.add(ba);
                 }
                 return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
+
+        public static int insertBolla(Connection connection, BollaAcquisto a) {
+            try (var ps = connection.prepareStatement(Queries.INSERT_BOLLA_ACQUISTO, java.sql.Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, a.id_bolla_acquisto);
+                ps.setDate(2, a.data);
+                ps.setString(3, a.p_iva);
+                ps.executeUpdate();
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        int codiceBolla = keys.getInt(1);
+                        a.id_bolla_acquisto = codiceBolla;
+                        return codiceBolla;
+                    }
+                    return 0;
+                }
             } catch (Exception e) {
                 throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
             }
