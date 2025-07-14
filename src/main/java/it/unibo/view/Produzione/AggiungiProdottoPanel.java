@@ -28,11 +28,13 @@ public class AggiungiProdottoPanel extends JPanel {
     private JComboBox<String> comboNomeStato;
     private JComboBox<String> comboIdGruppo;
 
-    List<String> nomiStati = importStati();
-    List<Gruppo> gruppi = importGruppi();
+    List<String> nomiStati;
+    List<Gruppo> gruppi;
 
     public AggiungiProdottoPanel(Controller controller) {
         this.controller = controller;
+        nomiStati = importStati();
+        gruppi = importGruppi();
         setBackground(Color.CYAN);
         setLayout(new BorderLayout());
         
