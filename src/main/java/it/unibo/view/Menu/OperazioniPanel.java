@@ -40,7 +40,7 @@ public class OperazioniPanel extends JPanel {
                 () -> {controller.goToOperazioni2Panel();}),
             ButtonFactory.createButton("Verificare la disponibilità di prodotti per evadere un ordine", 
                 () -> {controller.goToOperazioni3Panel();}),
-            ButtonFactory.createButton("operazione4", () -> {})  
+            ButtonFactory.createButton("Visualizza magazini pieni", () -> {controller.goToOperazioni4Panel();})  
         );
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         

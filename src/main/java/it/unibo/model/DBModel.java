@@ -111,6 +111,10 @@ public class DBModel {
         return Gruppo.DAO.findAll(connection);
     }
 
+    public List<Magazzino> magazziniPieni() {
+        return Magazzino.DAO.magazziniPieni(connection);
+    }
+
     public boolean insertProdotto(Prodotto prodotto) {
         return Prodotto.DAO.insert(connection, prodotto);
     }

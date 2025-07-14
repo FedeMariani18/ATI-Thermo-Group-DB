@@ -111,4 +111,8 @@ public class Controller {
     public void goToOperazioni3Panel() {
         mainFrame.setPanel(mainFrame.getOperazioni3Panel());
     }
+
+    public void goToOperazioni4Panel() {
+        mainFrame.setPanel(mainFrame.getOperazioni4Panel());
+    }
 }

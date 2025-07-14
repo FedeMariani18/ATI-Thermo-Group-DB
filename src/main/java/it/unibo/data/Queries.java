@@ -148,4 +148,9 @@ public final class Queries {
             WHERE R.id_ordine = ?
             GROUP BY R.id_prodotto, R.quantita;
             """;
+
+    public static final String MAGAZZINI_PIENI = """
+            SELECT * FROM MAGAZZINI
+            WHERE capacita_residua = 0;
+            """;
 }

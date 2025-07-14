@@ -78,5 +78,28 @@ public class Magazzino {
             }
             
         }
+
+        public static List<Magazzino> magazziniPieni(Connection connection) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.MAGAZZINI_PIENI); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Magazzino>();
+                while(rs.next()) {
+                    Magazzino p = new Magazzino(
+                        rs.getInt("id_magazzino"),
+                        rs.getString("nome"),
+                        rs.getString("via"),
+                        rs.getString("civico"),
+                        rs.getString("nome_citta"),
+                        rs.getInt("capacita_max"),
+                        rs.getInt("capacita_residua")
+                    );
+                    list.add(p);
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+            
+        }
     }
 }
