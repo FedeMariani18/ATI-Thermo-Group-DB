@@ -15,7 +15,7 @@ import it.unibo.common.Constants;
 import it.unibo.controller.Controller;
 import it.unibo.data.BollaAcquisto;
 
-public class AcquistiPanel extends JPanel{
+public class AcquistiPanel extends JPanel {
     private final DefaultTableModel model;
     private final JTable table;
     private final Controller controller;

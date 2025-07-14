@@ -67,6 +67,11 @@ public class DBModel {
     public List<BollaVendita> loadBolleVendite() {
         return BollaVendita.DAO.findAll(connection);
     }
+
+    public void insertBollaAcquisto(BollaAcquisto a) {
+        BollaAcquisto.DAO.insertBolla(connection, a);
+    }
+
     //DISTINTA BASE
 
     public List<DistintaBase> loadDistinte() {
