@@ -66,7 +66,7 @@ public class Magazzino {
                         rs.getString("nome"),
                         rs.getString("via"),
                         rs.getString("civico"),
-                        rs.getString("nome_città"),
+                        rs.getString("nome_citta"),
                         rs.getInt("capacita_max"),
                         rs.getInt("capacita_residua")
                     );

@@ -70,6 +70,7 @@ public class Operazione1 extends JPanel{
             int idArticolo = Integer.parseInt(idArticoloField.getText());
             model.setRowCount(0);
             List<Integer> list = controller.getModel().tempoPerArticolo(idArticolo);
+            
             if (!list.isEmpty()) {
                 int tempoEffettivo = list.get(0);
                 int tempoStimato = list.get(1);

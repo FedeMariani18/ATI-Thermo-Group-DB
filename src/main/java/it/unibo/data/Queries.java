@@ -99,7 +99,7 @@ public final class Queries {
         INSERT INTO PRODOTTI (id_prodotto, prezzo_listino, descrizione, peso, superficie,
         prezzo_inventario, codice_a_barre, nome_stato, id_gruppo, id_categoria,
         id_categoria_statistica)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 ;
 

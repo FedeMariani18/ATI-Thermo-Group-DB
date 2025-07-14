@@ -144,13 +144,14 @@ public final class Articolo {
         }
 
         public static List<Integer> tempoPerArticolo(Connection connection, int id_articolo) {
-            try (var stmt = DAOUtils.prepare(connection, Queries.FIND_ARTICOLO_BY_PRODUCT, id_articolo); 
+            try (var stmt = DAOUtils.prepare(connection, Queries.TEMPO_LAVORAZIONE, id_articolo, id_articolo); 
                 var rs   = stmt.executeQuery()) {
                 var list = new ArrayList<Integer>();
                 while(rs.next()) {
                     list.add(rs.getInt("TempoEffettivo"));
                     list.add(rs.getInt("TempoStimato"));
                 }
+                
                 return list;
             } catch (Exception e) {
                 throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
