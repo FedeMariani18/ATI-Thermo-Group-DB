@@ -135,4 +135,9 @@ public final class Queries {
         LIMIT 1;
 
     """;
+
+    public static final String INSERISCI_SCHEDA = """
+            INSERT INTO SCHEDA_DI_LAVORAZIONE (codice_fiscale, id_prodotto, id_seriale, ora_inizio, ora_fine, data)
+            VALUES ( ?, ?, ?, ?, ?, ?);
+            """;
 }

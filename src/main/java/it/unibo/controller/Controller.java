@@ -47,6 +47,10 @@ public class Controller {
         mainFrame.setPanel(mainFrame.getAggiuntaProdottoPanel());
     }
 
+    public void goToAggiungiSchedaPanel() {
+        mainFrame.setPanel(mainFrame.getAggiungiSchedaPanel());
+    }
+
     //COMPRA VENDITA
     public void goToCompraVenditaPanel() {
         mainFrame.setPanel(mainFrame.getCompraVenditaPanel());    

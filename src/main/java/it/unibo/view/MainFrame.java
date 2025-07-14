@@ -70,6 +70,10 @@ public class MainFrame {
         return new AggiungiProdottoPanel(controller);
     }
 
+    public JPanel getAggiungiSchedaPanel() {
+        return new AggiungiSchedaPanel(controller);
+    }
+
     //COMPRA VENDITA
     public JPanel getCompraVenditaPanel() {
         return new CompraVenditaPanel(controller);

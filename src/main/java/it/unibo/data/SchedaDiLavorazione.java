@@ -2,6 +2,7 @@ package it.unibo.data;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,28 @@ public class SchedaDiLavorazione {
                 throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
             }
             
+        }
+
+        public static String insertScheda(Connection connection, SchedaDiLavorazione a) {
+            try (var ps = connection.prepareStatement(Queries.INSERISCI_SCHEDA, java.sql.Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, a.codice_fiscale);
+                ps.setInt(2, a.id_prodotto);
+                ps.setInt(3, a.id_seriale);
+                ps.setTime(4, a.ora_inizio);
+                ps.setTime(5, a.ora_fine);
+                ps.setDate(6, a.data);
+                ps.executeUpdate();
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        String cf = keys.getString(1);
+                        a.codice_fiscale = cf;
+                        return cf;
+                    }
+                    return "";
+                }
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
         }
     }
 }

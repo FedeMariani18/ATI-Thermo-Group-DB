@@ -54,6 +54,10 @@ public class DBModel {
         return SchedaDiLavorazione.DAO.findAll(connection);
     }
 
+    public void insertScheda(SchedaDiLavorazione a) {
+        SchedaDiLavorazione.DAO.insertScheda(connection, a);
+    }
+
     //COMPRA E VENDITA
     public List<BollaAcquisto> loadBolleAcquisti() {
         return BollaAcquisto.DAO.findAll(connection);
