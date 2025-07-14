@@ -106,6 +106,10 @@ public class DBModel {
         return Gruppo.DAO.findAll(connection);
     }
 
+    public boolean insertProdotto(Prodotto prodotto) {
+        return Prodotto.DAO.insert(connection, prodotto);
+    }
+
     //OPERAZIONI
 
     public List<Integer> tempoPerArticolo(int id_articolo) {

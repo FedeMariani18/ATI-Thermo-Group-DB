@@ -95,6 +95,14 @@ public final class Queries {
         VALUES (?, ?, ?)
         """;
 
+    public static final String ADD_PRODOTTO = """
+        INSERT INTO PRODOTTO (id_prodotto, prezzo_listino, descrizione, peso, superficie,
+        prezzo_inventario, codice_a_barre, nome_stato, id_gruppo, id_categoria,
+        id_categoria_statistica)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """;
+;
+
     public static final String TEMPO_LAVORAZIONE = """
     SELECT 
         (
