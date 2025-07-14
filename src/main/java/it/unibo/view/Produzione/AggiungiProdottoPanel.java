@@ -3,6 +3,7 @@ package it.unibo.view.produzione;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -26,6 +27,9 @@ public class AggiungiProdottoPanel extends JPanel {
     private JTextField txtCodiceABarre;
     private JComboBox<String> comboNomeStato;
     private JComboBox<String> comboIdGruppo;
+
+    List<String> nomiStati = importStati();
+    List<Gruppo> gruppi = importGruppi();
 
     public AggiungiProdottoPanel(Controller controller) {
         this.controller = controller;
@@ -53,11 +57,6 @@ public class AggiungiProdottoPanel extends JPanel {
         txtSuperficie = new JTextField();
         txtPrezzoInventario = new JTextField();
         txtCodiceABarre = new JTextField();
-
-        // ComboBox predisposte per i dati (puoi popolarle da DB)
-        List<String> nomiStati = importStati();
-        List<Gruppo> gruppi = importGruppi();
-        
         
         comboNomeStato = new JComboBox<>(nomiStati.toArray(new String[0]));
         comboIdGruppo = new JComboBox<>(gruppi.stream().map(g -> g.descrizione).toArray(String[]::new));
@@ -89,6 +88,28 @@ public class AggiungiProdottoPanel extends JPanel {
 
         // Pulsante per invio
         JButton btnSubmit = new JButton("Salva");
+        btnSubmit.addActionListener(e -> {
+            // Creazione del Prodotto
+            Prodotto prodotto = new Prodotto(
+                0, // ID sarà generato dal DB
+                BigDecimal.valueOf(Double.parseDouble(txtPrezzoListino.getText())),
+                txtDescrizione.getText(),
+                BigDecimal.valueOf(Double.parseDouble(txtPeso.getText())),
+                BigDecimal.valueOf(Double.parseDouble(txtSuperficie.getText())),
+                BigDecimal.valueOf(Double.parseDouble(txtPrezzoInventario.getText())),
+                txtCodiceABarre.getText(),
+                comboNomeStato.getSelectedItem().toString(),
+                gruppi.stream().filter(g -> g.descrizione.equals(comboIdGruppo.getSelectedItem().toString()))
+                    .findFirst()
+                    .map(g -> g.id_gruppo)
+                    .orElse(null)
+                
+            );
+            // Inserimento del Prodotto nel DB
+            controller.getModel().insertProdotto(prodotto);
+            // Ritorno al pannello precedente
+            controller.goToProduzionePanel();
+        });
         formPanel.add(btnSubmit);
 
 

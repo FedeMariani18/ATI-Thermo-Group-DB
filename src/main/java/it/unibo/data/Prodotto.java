@@ -128,6 +128,25 @@ public class Prodotto {
                 throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
             }
             
+        }
+
+        public static boolean insert(Connection connection, Prodotto prodotto) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.ADD_PRODOTTO,
+                prodotto.id_prodotto,
+                prodotto.prezzo_listino,
+                prodotto.descrizione,
+                prodotto.peso,
+                prodotto.superficie,
+                prodotto.prezzo_inventario,
+                prodotto.codice_a_barre,
+                prodotto.nome_stato,
+                prodotto.id_gruppo
+            )) {
+                int rowsAffected = stmt.executeUpdate();
+                return rowsAffected > 0;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante l'inserimento del prodotto: " + e.getMessage(), e);
+            }
         } 
     } 
 }

@@ -105,4 +105,8 @@ public class DBModel {
     public List<Gruppo> loadGruppi() {
         return Gruppo.DAO.findAll(connection);
     }
+
+    public boolean insertProdotto(Prodotto prodotto) {
+        return Prodotto.DAO.insert(connection, prodotto);
+    }
 }
