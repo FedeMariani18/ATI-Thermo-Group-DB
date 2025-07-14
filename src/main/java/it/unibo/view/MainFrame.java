@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 
 import it.unibo.controller.Controller;
 import it.unibo.view.compraVendita.*;
-import it.unibo.view.Menu.*;
-import it.unibo.view.Produzione.*;
+import it.unibo.view.menu.*;
+import it.unibo.view.produzione.*;
 import it.unibo.view.magazzino.*;
 import it.unibo.view.risorseUmane.*;
 
