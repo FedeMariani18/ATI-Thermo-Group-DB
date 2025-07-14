@@ -1,4 +1,4 @@
-package it.unibo.view.Menu;
+package it.unibo.view.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
