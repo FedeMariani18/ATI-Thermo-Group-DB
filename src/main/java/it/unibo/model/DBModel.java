@@ -105,4 +105,10 @@ public class DBModel {
     public List<Gruppo> loadGruppi() {
         return Gruppo.DAO.findAll(connection);
     }
+
+    //OPERAZIONI
+
+    public List<Integer> tempoPerArticolo(int id_articolo) {
+        return Articolo.DAO.tempoPerArticolo(connection, id_articolo);
+    }
 }

@@ -94,4 +94,25 @@ public final class Queries {
         INSERT INTO BOLLE_ACQUISTO (id_bolla_acquisto, data, p_iva)
         VALUES (?, ?, ?)
         """;
+
+    public static final String TEMPO_LAVORAZIONE = """
+    SELECT 
+        (
+            SELECT SUM(TIMESTAMPDIFF(MINUTE, ora_inizio, ora_fine))
+            FROM SCHEDA_DI_LAVORAZIONE
+            WHERE id_seriale = ?
+        ) AS TempoEffettivo,
+
+        (
+            SELECT SUM(stima_durata)
+            FROM DISTINTA_BASE_PASSAGGI
+            WHERE id_prodotto = (
+                SELECT id_prodotto
+                FROM ARTICOLO
+                WHERE id_seriale = ?
+            )
+        ) AS TempoStimato;
+    """;
+
+    
 }
