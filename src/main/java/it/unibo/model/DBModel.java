@@ -124,4 +124,8 @@ public class DBModel {
     public List<Categoria> categoriaVenduta() {
         return Categoria.DAO.categoriaVenduta(connection);
     }
+
+    public List<Integer> evadereOrdine(int id_ordine) {
+        return Ordine.DAO.evadereOrdine(connection, id_ordine);
+    }
 }

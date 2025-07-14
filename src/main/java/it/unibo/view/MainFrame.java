@@ -7,6 +7,7 @@ import it.unibo.view.compraVendita.*;
 import it.unibo.view.menu.*;
 import it.unibo.view.operazioni.Operazione1;
 import it.unibo.view.operazioni.Operazione2;
+import it.unibo.view.operazioni.Operazione3;
 import it.unibo.view.produzione.*;
 import it.unibo.view.magazzino.*;
 import it.unibo.view.risorseUmane.*;
@@ -129,5 +130,9 @@ public class MainFrame {
 
     public JPanel getOperazioni2Panel() {
         return new Operazione2(controller);
+    }
+
+    public JPanel getOperazioni3Panel() {
+        return new Operazione3(controller);
     }
 }

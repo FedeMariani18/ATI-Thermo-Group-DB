@@ -62,6 +62,21 @@ public class Ordine {
             }
         }
 
+        public static List<Integer> evadereOrdine(Connection connection, int id_ordine) {
+            try (var stmt = DAOUtils.prepare(connection, Queries.EVADERE_ORDINE, id_ordine); 
+                var rs   = stmt.executeQuery()) {
+                var list = new ArrayList<Integer>();
+                while(rs.next()) {
+                    list.add(rs.getInt("IDProdotto"));
+                    list.add(rs.getInt("QuantitàRichiesta"));
+                    list.add(rs.getInt("QuantitàDisponibile"));
+                }
+                return list;
+            } catch (Exception e) {
+                throw new DAOException("Errore durante il LOAD dei prodotti" + e.getMessage(), e);
+            }
+        }
+
         // public static List<BollaAcquisto> findAllJoinedVenditori(Connection connection) {
         //     try (var stmt = DAOUtils.prepare(connection, Queries.LOAD_BOLLE_ACQUISTO_JOINED_VENDITORI); 
         //         var rs   = stmt.executeQuery()) {

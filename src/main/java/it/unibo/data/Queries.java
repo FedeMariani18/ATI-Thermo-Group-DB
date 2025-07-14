@@ -96,7 +96,7 @@ public final class Queries {
         """;
 
     public static final String ADD_PRODOTTO = """
-        INSERT INTO PRODOTTO (id_prodotto, prezzo_listino, descrizione, peso, superficie,
+        INSERT INTO PRODOTTI (id_prodotto, prezzo_listino, descrizione, peso, superficie,
         prezzo_inventario, codice_a_barre, nome_stato, id_gruppo, id_categoria,
         id_categoria_statistica)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -107,16 +107,16 @@ public final class Queries {
     SELECT 
         (
             SELECT SUM(TIMESTAMPDIFF(MINUTE, ora_inizio, ora_fine))
-            FROM SCHEDA_DI_LAVORAZIONE
+            FROM SCHEDE_DI_LAVORAZIONE
             WHERE id_seriale = ?
         ) AS TempoEffettivo,
 
         (
             SELECT SUM(stima_durata)
-            FROM DISTINTA_BASE_PASSAGGI
+            FROM DISTINTE_BASE_PASSAGGI
             WHERE id_prodotto = (
                 SELECT id_prodotto
-                FROM ARTICOLO
+                FROM ARTICOLI
                 WHERE id_seriale = ?
             )
         ) AS TempoStimato;
@@ -137,7 +137,15 @@ public final class Queries {
     """;
 
     public static final String INSERISCI_SCHEDA = """
-            INSERT INTO SCHEDA_DI_LAVORAZIONE (codice_fiscale, id_prodotto, id_seriale, ora_inizio, ora_fine, data)
+            INSERT INTO SCHEDE_DI_LAVORAZIONE (codice_fiscale, id_prodotto, id_seriale, ora_inizio, ora_fine, data)
             VALUES ( ?, ?, ?, ?, ?, ?);
+            """;
+
+    public static final String EVADERE_ORDINE = """
+            SELECT R.id_prodotto AS IDProdotto, R.quantita AS QuantitàRichiesta, COUNT(A.id_seriale) AS QuantitàDisponibile
+            FROM RICHIESTE R
+            LEFT JOIN ARTICOLI A ON R.id_prodotto = A.id_prodotto
+            WHERE R.id_ordine = ?
+            GROUP BY R.id_prodotto, R.quantita;
             """;
 }
